@@ -653,6 +653,17 @@ video {
   outline-offset: 2px;
 }
 
+@media (min-width: 768px) {
+  .login-input {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
+.login-input {
+  min-height: 44px;
+}
+
 .login-button {
   --tw-bg-opacity: 1;
   background-color: rgb(221 255 48 / var(--tw-bg-opacity, 1));
@@ -679,6 +690,10 @@ video {
 .login-button:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.login-button {
+  min-height: 44px;
 }
 
 .visible {
@@ -758,12 +773,12 @@ video {
   height: 1.25rem;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .h-\[30\%\] {
   height: 30%;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .min-h-0 {
@@ -780,14 +795,6 @@ video {
 
 .w-5 {
   width: 1.25rem;
-}
-
-.w-\[40\%\] {
-  width: 40%;
-}
-
-.w-\[60\%\] {
-  width: 60%;
 }
 
 .w-full {
@@ -914,15 +921,6 @@ video {
   padding: 1.5rem;
 }
 
-.p-8 {
-  padding: 2rem;
-}
-
-.px-16 {
-  padding-left: 4rem;
-  padding-right: 4rem;
-}
-
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -936,11 +934,6 @@ video {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.py-12 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
 }
 
 .py-2 {
