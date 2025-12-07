@@ -26,10 +26,8 @@
     "url": "https://platform.zone01.gr/git/icelilog/graphql.git"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.22",
     "concurrently": "^9.2.1",
     "http-server": "^14.1.1",
-    "postcss": "^8.5.6",
     "tailwindcss": "^3.4.18"
   }
 }

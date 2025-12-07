@@ -4,18 +4,6 @@
 
 /* Custom styles */
 @layer components {
-  .btn-primary {
-    @apply bg-yellow-400 text-[#171616] font-semibold py-3 px-4 hover:bg-yellow-300 transition duration-200 focus:outline-none border-2 border-yellow-400 font-mono;
-  }
-
-  .card {
-    @apply p-6 border-2 border-yellow-400;
-  }
-
-  .input-field {
-    @apply w-full px-4 py-3 bg-[#171616] border-2 border-yellow-400 focus:border-yellow-400 text-yellow-400 transition font-mono placeholder-gray-600;
-  }
-
   .login-left-section {
     background: #F0EFEF;
     position: relative;
@@ -52,35 +40,6 @@
 
 /* Custom animations */
 @layer utilities {
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes barGrow {
-    from {
-      transform: scaleY(0);
-    }
-    to {
-      transform: scaleY(1);
-    }
-  }
-
-  .fade-in {
-    animation: fadeIn 0.5s ease-out;
-  }
-
-  .bar {
-    animation: barGrow 0.8s ease-out;
-    transform-origin: bottom;
-  }
-
   /* Performance-optimized tooltip classes */
   .chart-tooltip {
     opacity: 0;
