@@ -11,7 +11,7 @@ func CORS(next http.Handler) http.Handler {
 		allowedOrigins := []string{
 			"http://localhost:3000",
 			"http://localhost:8080",
-			"https://graphql-silk.vercel.app",
+			"https://iremnurc.github.io",
 		}
 
 		// Check if origin is allowed
