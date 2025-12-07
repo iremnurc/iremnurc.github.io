@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"graphql-proxy/handlers"
 	"graphql-proxy/middleware"
@@ -19,11 +20,14 @@ func main() {
 	// Wrap with CORS middleware
 	corsHandler := middleware.CORS(mux)
 
-	// Start server
-	port := ":8080"
-	log.Printf("Backend API server starting on http://localhost%s", port)
-	log.Printf("This is the API proxy - do NOT visit this URL directly")
-	log.Printf("Visit http://localhost:3000 in your browser instead")
+	// Start server - use PORT environment variable for cloud platforms
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	port = ":" + port
+
+	log.Printf("Backend API server starting on port %s", port)
 	log.Printf("Proxying requests to: https://platform.zone01.gr")
 
 	if err := http.ListenAndServe(port, corsHandler); err != nil {

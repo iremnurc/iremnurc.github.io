@@ -43,6 +43,10 @@ export async function graphqlQuery(query, variables = {}) {
         return result.data;
     } catch (error) {
         console.error('GraphQL query error:', error);
+        // Handle CORS and network errors
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError') || error.name === 'TypeError') {
+            throw new Error('Cannot connect to API. This may be a CORS issue. Please check the browser console for details.');
+        }
         throw error;
     }
 }

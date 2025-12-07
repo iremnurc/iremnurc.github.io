@@ -44,6 +44,10 @@ export async function login(identifier, password) {
         return token;
     } catch (error) {
         console.error('Login error:', error);
+        // Handle CORS and network errors
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError') || error.name === 'TypeError') {
+            throw new Error('Cannot connect to server. This may be a CORS issue. Please check the browser console for details.');
+        }
         throw error;
     }
 }
