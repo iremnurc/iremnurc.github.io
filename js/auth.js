@@ -25,7 +25,15 @@ export async function login(identifier, password) {
             if (response.status >= 500) {
                 throw createError(ErrorType.API, 'Server error. Please try again later.');
             }
-            throw createError(ErrorType.AUTH, `Authentication failed: ${response.statusText}`);
+            // Handle other error statuses
+            const statusText = response.statusText || 'Unknown error';
+            if (response.status === 403) {
+                throw createError(ErrorType.AUTH, 'Access forbidden. Please check your credentials.');
+            }
+            if (response.status === 404) {
+                throw createError(ErrorType.API, 'Authentication endpoint not found.');
+            }
+            throw createError(ErrorType.AUTH, `Authentication failed. Please check your credentials and try again.`);
         }
         
         // Get JWT token from response

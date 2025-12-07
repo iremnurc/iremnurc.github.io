@@ -50,8 +50,18 @@ export function normalizeError(error, context = '') {
     }
     
     // Handle authentication errors
-    if (message.includes('401') || message.includes('Unauthorized') || message.includes('token')) {
+    if (message.includes('401') || message.includes('Unauthorized') || message.includes('token') || message.includes('expired')) {
         return 'Your session has expired. Please log in again.';
+    }
+    
+    // Handle invalid credentials
+    if (message.includes('Invalid username') || message.includes('Invalid email') || message.includes('Invalid password') || message.includes('Invalid credentials')) {
+        return 'Invalid username/email or password. Please try again.';
+    }
+    
+    // Handle authentication failed messages
+    if (message.includes('Authentication failed') || message.includes('authentication failed')) {
+        return 'Invalid username/email or password. Please try again.';
     }
     
     // Handle 403 errors
