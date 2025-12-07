@@ -103,21 +103,11 @@ The application queries the Zone01 GraphQL API for:
 
 ## Technologies
 
-- **Frontend**: Vanilla JavaScript (ES6 modules), Tailwind CSS
-- **Backend**: Go (Gin framework)
+- **Frontend**: Vanilla JavaScript, Tailwind CSS
+- **Backend**: Go
 - **Charts**: Custom SVG generation
-- **Authentication**: JWT (Bearer token)
+- **Authentication**: JWT
 - **API**: GraphQL
-
-## Design
-
-Profile01 features a minimalist design with:
-- Sharp edges (no border radius)
-- Color palette: Black (#171616), Light Gray (#F0EFEF), Neon Yellow (#DDFF30)
-- Typography: Space Grotesk (sans-serif), JetBrains Mono (monospace)
-- Interactive gradient blob animation on login page
-- Custom scrollbar styling
-- Neon yellow text selection
 
 ## License
 
