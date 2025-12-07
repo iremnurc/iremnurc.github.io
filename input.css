@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+@layer components {
+  .btn-primary {
+    @apply bg-yellow-400 text-[#171616] font-semibold py-3 px-4 hover:bg-yellow-300 transition duration-200 focus:outline-none border-2 border-yellow-400 font-mono;
+  }
+
+  .card {
+    @apply p-6 border-2 border-yellow-400;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-[#171616] border-2 border-yellow-400 focus:border-yellow-400 text-yellow-400 transition font-mono placeholder-gray-600;
+  }
+
+  .login-left-section {
+    background: #F0EFEF;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Gradient Blob Animation */
+  .blob {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: 450px;
+    border-radius: 100%;
+    background-image: linear-gradient(#DDFF30 10%, rgba(221, 255, 48, 0.3));
+    filter: blur(200px);
+    transition: all 450ms ease-out;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    transform: translate(calc(-50% + 15px), -50%);
+    z-index: 1;
+  }
+
+  .login-input {
+    @apply w-full px-4 py-3 bg-[#171616] border border-[#DDFF30] focus:border-[#DDFF30] focus:outline-none text-[#F0EFEF] transition font-mono placeholder-gray-500;
+  }
+
+  .login-button {
+    @apply bg-[#DDFF30] text-[#171616] font-semibold py-3 px-4 hover:bg-[#F0EFEF] hover:text-[#171616] transition duration-200 focus:outline-none font-mono;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes barGrow {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .bar {
+    animation: barGrow 0.8s ease-out;
+    transform-origin: bottom;
+  }
+
+  /* Performance-optimized tooltip classes */
+  .chart-tooltip {
+    opacity: 0;
+    transform: translateZ(0); /* Force GPU acceleration */
+    will-change: opacity;
+    transition: opacity 0.15s ease-out;
+    pointer-events: none;
+  }
+
+  .chart-tooltip.visible {
+    opacity: 1;
+  }
+
+  /* Optimized chart elements */
+  .chart-point {
+    will-change: transform;
+    transition: transform 0.2s ease;
+  }
+
+  .chart-label {
+    will-change: color;
+    transition: color 0.2s ease;
+  }
+}
+
+/* Hidden class for views */
+.hidden {
+  display: none !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #171616;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DDFF30;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #DDFF30;
+}
+
+/* Text selection styling */
+::selection {
+  background-color: #DDFF30; /* Neon yellow */
+  color: #171616; /* Black text */
+}
+
+::-moz-selection {
+  background-color: #DDFF30; /* Neon yellow */
+  color: #171616; /* Black text */
+}
+
