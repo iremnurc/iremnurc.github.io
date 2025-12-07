@@ -1,6 +1,7 @@
 // Authentication module for handling login, logout, and JWT management
 
 import { API_BASE_URL, AUTH_ENDPOINT } from './config.js';
+import { handleError, isNetworkError, createError, ErrorType, logError } from './errors.js';
 
 // Login function that authenticates user with username/email and password
 export async function login(identifier, password) {
@@ -19,9 +20,12 @@ export async function login(identifier, password) {
         
         if (!response.ok) {
             if (response.status === 401) {
-                throw new Error('Invalid username/email or password');
+                throw createError(ErrorType.AUTH, 'Invalid username/email or password');
             }
-            throw new Error(`Authentication failed: ${response.statusText}`);
+            if (response.status >= 500) {
+                throw createError(ErrorType.API, 'Server error. Please try again later.');
+            }
+            throw createError(ErrorType.AUTH, `Authentication failed: ${response.statusText}`);
         }
         
         // Get JWT token from response
@@ -29,7 +33,7 @@ export async function login(identifier, password) {
         const token = data.token || data;
         
         if (!token) {
-            throw new Error('No token received from server');
+            throw createError(ErrorType.AUTH, 'No authentication token received. Please try again.');
         }
         
         // Store JWT in localStorage
@@ -43,12 +47,15 @@ export async function login(identifier, password) {
         
         return token;
     } catch (error) {
-        console.error('Login error:', error);
-        // Handle CORS and network errors
-        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError') || error.name === 'TypeError') {
-            throw new Error('Cannot connect to server. This may be a CORS issue. Please check the browser console for details.');
+        // Handle network errors
+        if (isNetworkError(error)) {
+            throw createError(ErrorType.NETWORK, handleError(error, 'connecting to the server'));
         }
-        throw error;
+        // Re-throw if already a created error, otherwise normalize
+        if (error.type) {
+            throw error;
+        }
+        throw createError(ErrorType.AUTH, handleError(error, 'logging in'));
     }
 }
 
@@ -83,7 +90,7 @@ export function isAuthenticated() {
         
         return true;
     } catch (error) {
-        console.error('Error checking authentication:', error);
+        logError(error, 'checking authentication');
         return false;
     }
 }
@@ -94,7 +101,7 @@ function getUserIdFromToken(token) {
         const payload = JSON.parse(atob(token.split('.')[1]));
         return payload.sub || payload.userId || payload.id || null;
     } catch (error) {
-        console.error('Error decoding token:', error);
+        logError(error, 'decoding token');
         return null;
     }
 }

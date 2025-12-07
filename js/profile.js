@@ -3,6 +3,7 @@
 import { logout } from './auth.js';
 import { getAllProfileData } from './api.js';
 import { createXPChart, createSkillsRadarChart } from './charts.js';
+import { normalizeError } from './errors.js';
 
 let isInitialized = false;
 
@@ -38,8 +39,8 @@ export async function initProfile() {
         
         showContent();
     } catch (error) {
-        console.error('Error initializing profile:', error);
-        showError(error.message);
+        const userMessage = normalizeError(error, 'loading your profile');
+        showError(userMessage);
     }
 }
 

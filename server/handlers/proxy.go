@@ -62,7 +62,10 @@ func proxyRequest(w http.ResponseWriter, r *http.Request, targetURL string, requ
 	w.WriteHeader(resp.StatusCode)
 	w.Write(respBody)
 
-	log.Printf("%s: status=%d, size=%d bytes", logPrefix, resp.StatusCode, len(respBody))
+	// Only log errors and important requests (not every successful request)
+	if resp.StatusCode >= 400 {
+		log.Printf("%s: ERROR status=%d, size=%d bytes", logPrefix, resp.StatusCode, len(respBody))
+	}
 }
 
 // ProxyAuthHandler handles authentication requests

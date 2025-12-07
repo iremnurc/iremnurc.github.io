@@ -3,13 +3,14 @@
 import { getToken, logout } from './auth.js';
 import { queries } from './queries.js';
 import { GRAPHQL_ENDPOINT } from './config.js';
+import { handleError, isNetworkError, createError, ErrorType, logError } from './errors.js';
 
 // Generic GraphQL query function
 export async function graphqlQuery(query, variables = {}) {
     const token = getToken();
     
     if (!token) {
-        throw new Error('No authentication token found');
+        throw createError(ErrorType.AUTH, 'No authentication token found. Please log in again.');
     }
     
     try {
@@ -28,26 +29,33 @@ export async function graphqlQuery(query, variables = {}) {
         if (!response.ok) {
             if (response.status === 401) {
                 logout();
-                throw new Error('Authentication expired. Please login again.');
+                throw createError(ErrorType.AUTH, 'Your session has expired. Please log in again.');
             }
-            throw new Error(`GraphQL request failed: ${response.statusText}`);
+            if (response.status >= 500) {
+                throw createError(ErrorType.API, 'Server error. Please try again later.');
+            }
+            throw createError(ErrorType.API, `Request failed: ${response.statusText}`);
         }
         
         const result = await response.json();
         
         if (result.errors) {
-            console.error('GraphQL errors:', result.errors);
-            throw new Error(result.errors[0]?.message || 'GraphQL query failed');
+            logError(result.errors, 'GraphQL query');
+            const errorMessage = result.errors[0]?.message || 'Failed to fetch data';
+            throw createError(ErrorType.API, errorMessage);
         }
         
         return result.data;
     } catch (error) {
-        console.error('GraphQL query error:', error);
-        // Handle CORS and network errors
-        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError') || error.name === 'TypeError') {
-            throw new Error('Cannot connect to API. This may be a CORS issue. Please check the browser console for details.');
+        // Handle network errors
+        if (isNetworkError(error)) {
+            throw createError(ErrorType.NETWORK, handleError(error, 'connecting to the API'));
         }
-        throw error;
+        // Re-throw if already a created error, otherwise normalize
+        if (error.type) {
+            throw error;
+        }
+        throw createError(ErrorType.API, handleError(error, 'fetching data'));
     }
 }
 
@@ -166,7 +174,8 @@ export async function getSkillsData() {
         
         return skills;
     } catch (error) {
-        console.error('Error fetching skills:', error);
+        logError(error, 'fetching skills');
+        // Return empty skills array on error (graceful degradation)
         return [
             { name: 'Frontend', value: 0 },
             { name: 'Programming', value: 0 },
@@ -199,7 +208,8 @@ export async function getAllProfileData() {
             skills: skillsData
         };
     } catch (error) {
-        console.error('Error fetching profile data:', error);
+        logError(error, 'fetching profile data');
+        // Re-throw to let the caller handle it
         throw error;
     }
 }

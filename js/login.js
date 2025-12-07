@@ -102,8 +102,12 @@ async function handleLoginSubmit(e) {
         // Navigate to profile on success
         navigate('profile');
     } catch (error) {
+        // Import error handler for consistent error messages
+        const { normalizeError } = await import('./errors.js');
+        const userMessage = normalizeError(error, 'logging in');
+        
         // Show error message
-        errorText.textContent = error.message || 'Invalid credentials. Please try again.';
+        errorText.textContent = userMessage;
         errorMessage.classList.remove('hidden');
         
         // Reset button state
