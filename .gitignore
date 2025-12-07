@@ -4,7 +4,7 @@ package-lock.json
 yarn.lock
 
 # Build outputs
-css/output.css
+# css/output.css - Keep this for GitHub Pages deployment
 
 # Environment variables
 .env
