@@ -34,17 +34,17 @@
 
                 <!-- Right Section (60% on desktop, full width on mobile) -->
                 <div class="flex-1 md:w-[60%] bg-[#171616] flex flex-col">
-                <div class="flex-1 flex flex-col justify-center px-4 md:px-16 py-6 md:py-12">
+                <div class="flex-1 flex flex-col justify-center px-4 md:px-16 py-8 md:py-12">
                     <!-- Title -->
-                    <h2 class="text-2xl md:text-3xl font-bold text-[#F0EFEF] mb-3 md:mb-4 font-mono">Sign in</h2>
+                    <h2 class="text-3xl font-bold text-[#F0EFEF] mb-4 font-mono">Sign in</h2>
                     
                     <!-- Explanation -->
-                    <p class="text-[#F0EFEF] text-sm mb-6 md:mb-8 font-mono opacity-80 max-w-md">
+                    <p class="text-[#F0EFEF] text-sm mb-8 font-mono opacity-80 max-w-md">
                         Sign in with your Zone01 platform account to view your dashboard and track your progress.
                     </p>
                     
                     <!-- Login Form -->
-                    <form id="loginForm" class="space-y-4 md:space-y-6 max-w-md">
+                    <form id="loginForm" class="space-y-6 max-w-md">
                         <!-- Email Field -->
                         <div>
                             <input 
@@ -154,8 +154,8 @@
             <!-- Top Section with White Background -->
             <div class="bg-[#F0EFEF]">
                 <!-- App Name and Logout at top -->
-                <div class="px-4 md:px-8 py-3 md:py-4 flex justify-between items-center">
-                    <h1 class="text-xl md:text-2xl font-bold text-[#171616] font-mono">Profile01</h1>
+                <div class="px-8 py-4 flex justify-between items-center">
+                    <h1 class="text-2xl font-bold text-[#171616] font-mono">Profile01</h1>
                     <button 
                         id="logoutButton" 
                         class="bg-[#171616] text-[#F0EFEF] px-4 py-2 hover:bg-[#DDFF30] hover:text-[#171616] transition text-sm font-medium font-mono border-2 border-[#171616]"
@@ -165,50 +165,50 @@
                 </div>
 
                 <!-- User Info Section (Stats on top) -->
-                <div class="px-4 md:px-8 pb-6 md:pb-8">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <div class="px-8 pb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <!-- Username Stat -->
-                        <div class="bg-[#F0EFEF] border-2 border-[#171616] p-4 md:p-6">
+                        <div class="bg-[#F0EFEF] border-2 border-[#171616] p-6">
                             <p class="text-[#171616] text-sm font-semibold uppercase mb-2 font-mono">Username</p>
-                            <p id="userLogin" class="text-2xl md:text-3xl font-bold text-[#171616] font-mono">-</p>
+                            <p id="userLogin" class="text-3xl font-bold text-[#171616] font-mono">-</p>
                         </div>
                         
                         <!-- Total XP Stat -->
-                        <div class="bg-[#F0EFEF] border-2 border-[#171616] p-4 md:p-6">
+                        <div class="bg-[#F0EFEF] border-2 border-[#171616] p-6">
                             <p class="text-[#171616] text-sm font-semibold uppercase mb-2 font-mono">Total XP</p>
-                            <p id="totalXP" class="text-2xl md:text-3xl font-bold text-[#171616] font-mono">-</p>
+                            <p id="totalXP" class="text-3xl font-bold text-[#171616] font-mono">-</p>
                         </div>
                         
                         <!-- Audit Ratio Stat -->
-                        <div class="bg-[#F0EFEF] border-2 border-[#171616] p-4 md:p-6">
+                        <div class="bg-[#F0EFEF] border-2 border-[#171616] p-6">
                             <p class="text-[#171616] text-sm font-semibold uppercase mb-2 font-mono">Audit Ratio</p>
-                            <p id="auditRatio" class="text-2xl md:text-3xl font-bold text-[#171616] font-mono">-</p>
+                            <p id="auditRatio" class="text-3xl font-bold text-[#171616] font-mono">-</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Main Content (Charts) -->
-            <div class="flex-1 px-4 md:px-8 pt-6 md:pt-8 pb-4">
+            <div class="flex-1 px-8 pt-8 pb-4">
 
                 <!-- Charts Section (Two graphs side by side) -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- XP Progress Chart -->
-                    <div class="p-2 md:p-4">
-                        <h2 class="text-lg md:text-xl font-bold text-yellow-400 mb-3 md:mb-4 font-mono text-center">XP Progress Over Time</h2>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold text-yellow-400 mb-4 font-mono text-center">XP Progress Over Time</h2>
                         <div id="xpChart" class="w-full" style="min-height: 400px;"></div>
                     </div>
 
                     <!-- Skills Radar Chart -->
-                    <div class="p-2 md:p-4">
-                        <h2 class="text-lg md:text-xl font-bold text-yellow-400 mb-3 md:mb-4 font-mono text-center">Skills Overview</h2>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold text-yellow-400 mb-4 font-mono text-center">Skills Overview</h2>
                         <div id="skillsChart" class="w-full flex items-center justify-center" style="min-height: 400px;"></div>
                     </div>
                 </div>
             </div>
 
             <!-- Footer Bar -->
-            <div class="bg-[#171616] px-4 md:px-8 py-3 md:py-4 flex justify-end items-center">
+            <div class="bg-[#171616] px-8 py-4 flex justify-end items-center">
                 <div class="flex items-center gap-2 text-[#F0EFEF] text-sm font-mono">
                     <span>created by</span>
                     <a href="https://github.com/iremnurc" target="_blank" class="font-bold text-[#DDFF30] hover:underline transition">iremnurc</a>
