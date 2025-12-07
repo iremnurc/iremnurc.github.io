@@ -29,6 +29,13 @@
     z-index: 1;
   }
 
+  .login-input {
+    @apply w-full px-4 py-3 bg-[#171616] border border-[#DDFF30] focus:border-[#DDFF30] focus:outline-none text-[#F0EFEF] transition font-mono placeholder-gray-500;
+  }
+
+  .login-button {
+    @apply bg-[#DDFF30] text-[#171616] font-semibold py-3 px-4 hover:bg-[#F0EFEF] hover:text-[#171616] transition duration-200 focus:outline-none font-mono;
+  }
 }
 
 @layer utilities {
