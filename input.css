@@ -98,3 +98,16 @@
   color: #171616; /* Black text */
 }
 
+/* SVG text selection */
+svg text::selection {
+  background-color: #DDFF30;
+  color: #171616;
+  fill: #171616 !important;
+}
+
+svg text::-moz-selection {
+  background-color: #DDFF30;
+  color: #171616;
+  fill: #171616 !important;
+}
+

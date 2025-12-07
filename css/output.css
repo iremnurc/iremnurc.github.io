@@ -1149,6 +1149,26 @@ video {
   /* Black text */
 }
 
+/* SVG text selection */
+
+svg text::-moz-selection {
+  background-color: #DDFF30;
+  color: #171616;
+  fill: #171616 !important;
+}
+
+svg text::selection {
+  background-color: #DDFF30;
+  color: #171616;
+  fill: #171616 !important;
+}
+
+svg text::-moz-selection {
+  background-color: #DDFF30;
+  color: #171616;
+  fill: #171616 !important;
+}
+
 .hover\:bg-\[\#DDFF30\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(221 255 48 / var(--tw-bg-opacity, 1));
